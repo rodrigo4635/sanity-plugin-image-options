@@ -17,6 +17,7 @@ interface ListItemProps {
   data: OptionListItem;
   selected: boolean;
   aspectRatio: number;
+  index: number;
   onZoom: (e: React.MouseEvent<HTMLButtonElement>, item: OptionListItem) => void;
   onSelect: (value: string) => void;
 }
@@ -29,7 +30,14 @@ type SchemaTypeOption =
     }
   | undefined;
 
-const ListItem: React.FC<ListItemProps> = ({ selected, data, onZoom, onSelect, aspectRatio }) => {
+const ListItem: React.FC<ListItemProps> = ({
+  selected,
+  data,
+  onZoom,
+  onSelect,
+  aspectRatio,
+  index,
+}) => {
   const { tooltip, value, title, image } = data;
 
   const handleClick = () => {
@@ -40,6 +48,7 @@ const ListItem: React.FC<ListItemProps> = ({ selected, data, onZoom, onSelect, a
     onZoom(e, data);
   };
 
+  if (!image || !value) return null;
   return (
     <Tooltip
       content={
@@ -51,6 +60,7 @@ const ListItem: React.FC<ListItemProps> = ({ selected, data, onZoom, onSelect, a
       }
       placement="top"
       portal
+      arrow
       disabled={!tooltip}
     >
       <StyledCard
@@ -60,9 +70,9 @@ const ListItem: React.FC<ListItemProps> = ({ selected, data, onZoom, onSelect, a
         radius={2}
         onClick={handleClick}
       >
-        <StyledImg src={image} $aspectRatio={aspectRatio} />
+        <StyledImg src={image} alt={title ?? "Image"} $aspectRatio={aspectRatio} />
         <Text align="center" size={1}>
-          {title}
+          {title || `Option ${index + 1}`}
         </Text>
         <button type="button" className="zoom" onClick={handleZoomClick}>
           <ExpandIcon style={{ fontSize: 25 }} />
@@ -100,10 +110,11 @@ const VisualOptions: React.FC<StringInputProps> = ({
   return (
     <Card padding={[2]} shadow={1}>
       <Grid columns={[2, 2, columns]} gap={[1, 1, 2, 2]} padding={1}>
-        {list.map((item) => (
+        {list.map((item, index) => (
           <ListItem
             selected={inputValue === item.value}
             data={item}
+            index={index}
             key={item.value}
             aspectRatio={aspectRatio}
             onZoom={handleZoom}
