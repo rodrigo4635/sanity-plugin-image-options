@@ -1,9 +1,10 @@
+import { ExpandIcon } from "@sanity/icons";
+import { Box, Card, Grid, Text, Tooltip } from "@sanity/ui";
 import React, { useCallback, useState } from "react";
 import type { StringInputProps } from "sanity";
 import { set } from "sanity";
-import { Dialog, Text, Card, Box, Grid, Tooltip } from "@sanity/ui";
-import styled from "styled-components";
-import { ExpandIcon } from "@sanity/icons";
+
+import { StyledCard, StyledDialog, StyledImg } from "./styles";
 
 type OptionListItem = {
   title: string;
@@ -16,7 +17,7 @@ interface ListItemProps {
   data: OptionListItem;
   selected: boolean;
   aspectRatio: number;
-  onZoom: (item: OptionListItem, e: React.MouseEvent<HTMLButtonElement>) => void;
+  onZoom: (e: React.MouseEvent<HTMLButtonElement>, item: OptionListItem) => void;
   onSelect: (value: string) => void;
 }
 
@@ -28,8 +29,17 @@ type SchemaTypeOption =
     }
   | undefined;
 
-const ListItem = ({ selected, data, onZoom, onSelect, aspectRatio }: ListItemProps) => {
+const ListItem: React.FC<ListItemProps> = ({ selected, data, onZoom, onSelect, aspectRatio }) => {
   const { tooltip, value, title, image } = data;
+
+  const handleClick = () => {
+    onSelect(value);
+  };
+
+  const handleZoomClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    onZoom(e, data);
+  };
+
   return (
     <Tooltip
       content={
@@ -43,26 +53,30 @@ const ListItem = ({ selected, data, onZoom, onSelect, aspectRatio }: ListItemPro
       portal
       disabled={!tooltip}
     >
-      <ItemWrapper
+      <StyledCard
         tone={selected ? "primary" : "default"}
         shadow={selected ? 1 : 0}
         padding={[2]}
         radius={2}
-        onClick={() => onSelect(value)}
+        onClick={handleClick}
       >
         <StyledImg src={image} $aspectRatio={aspectRatio} />
         <Text align="center" size={1}>
           {title}
         </Text>
-        <button className="zoom" onClick={(e) => onZoom(data, e)}>
+        <button type="button" className="zoom" onClick={handleZoomClick}>
           <ExpandIcon style={{ fontSize: 25 }} />
         </button>
-      </ItemWrapper>
+      </StyledCard>
     </Tooltip>
   );
 };
 
-const VisualOptions = ({ schemaType, onChange, value: inputValue = "" }: StringInputProps) => {
+const VisualOptions: React.FC<StringInputProps> = ({
+  schemaType,
+  onChange,
+  value: inputValue = "",
+}) => {
   const options = schemaType.options as SchemaTypeOption;
   const list = options?.list ?? [];
   const aspectRatio = options?.aspectRatio ?? 1;
@@ -78,7 +92,7 @@ const VisualOptions = ({ schemaType, onChange, value: inputValue = "" }: StringI
     [onChange, inputValue],
   );
 
-  const handleZoom = (img: OptionListItem, e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleZoom = (e: React.MouseEvent<HTMLButtonElement>, img: OptionListItem) => {
     e.stopPropagation();
     setZoomImage(img);
   };
@@ -115,54 +129,3 @@ const VisualOptions = ({ schemaType, onChange, value: inputValue = "" }: StringI
 };
 
 export default VisualOptions;
-
-const StyledImg = styled.img<{ $aspectRatio: number }>`
-  width: 100%;
-  border-radius: 3px;
-  aspect-ratio: ${({ $aspectRatio }) => $aspectRatio};
-  object-fit: cover;
-  margin-bottom: 6px;
-`;
-
-const StyledDialog = styled(Dialog)`
-  .content {
-    display: flex;
-
-    img {
-      max-height: 400px;
-      max-width: 100%;
-      margin: 0 auto;
-      object-fit: contain;
-    }
-  }
-`;
-
-const ItemWrapper = styled(Card)`
-  cursor: pointer;
-  position: relative;
-
-  &:hover {
-    .zoom {
-      opacity: 1;
-      pointer-events: auto;
-    }
-  }
-
-  .zoom {
-    cursor: pointer;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    padding: 0;
-    margin: 0;
-    background: var(--card-bg-color);
-    border: 1px solid var(--card-border-color);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
-
-    svg {
-      display: block;
-    }
-  }
-`;

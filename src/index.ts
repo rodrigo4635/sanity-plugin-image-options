@@ -1,4 +1,5 @@
 import { definePlugin, defineType } from "sanity";
+
 import VisualOptions from "./components/VisualOptions";
 
 interface ImageOptionsConfig {}
@@ -19,7 +20,7 @@ interface ImageOptionsConfig {}
  * })
  * ```
  */
-export const imageOptions = definePlugin<ImageOptionsConfig | void>((config = {}) => {
+export const imageOptions = definePlugin<ImageOptionsConfig | void>(() => {
   // eslint-disable-next-line no-console
   console.log("hello from sanity-plugin-image-options");
   return {

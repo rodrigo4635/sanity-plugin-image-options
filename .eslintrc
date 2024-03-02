@@ -2,7 +2,10 @@
   "root": true,
   "env": {
     "node": true,
-    "browser": true
+    "browser": true,
+  },
+  "rules": {
+    "react/jsx-no-bind": 0,
   },
   "extends": [
     "sanity",
@@ -10,6 +13,6 @@
     "sanity/react",
     "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
-    "plugin:react/jsx-runtime"
-  ]
+    "plugin:react/jsx-runtime",
+  ],
 }
