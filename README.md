@@ -1,4 +1,4 @@
-# sanity-plugin-image-options
+# Image Options Input for Sanity
 
 > This is a **Sanity Studio v3** plugin.
 
@@ -45,7 +45,7 @@ export default defineConfig({
 });
 ```
 
-Now you can use as a normal schema in your project:
+Now you can use as a normal schema type in your project:
 
 ```ts
 import img1 from "./img1.svg";
@@ -64,7 +64,7 @@ export default defineType({
         aspectRatio: 1, // Aspect Ratio for the image inside the card (Optional, default to 1)
         list: [
           { value: "1", title: "Option 1", image: img1, tooltip: "Example tooltip message" },
-          { value: "2", title: "Option 2 without tooltip", image: "https://site.com/image.png" },
+          { value: "2", title: "Option 2 without tooltip", image: "https://.../img2.png" },
           { value: "3", title: "Option 3", image: img3 },
           { value: "4", title: "Option 4", image: img4 },
         ],
