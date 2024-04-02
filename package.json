@@ -1,7 +1,7 @@
 {
   "name": "sanity-plugin-image-options",
   "version": "1.0.0",
-  "description": "A select input with images, labels and tooltips",
+  "description": "A Sanity select input plugin with images, labels and tooltips",
   "keywords": [
     "sanity",
     "sanity-plugin",

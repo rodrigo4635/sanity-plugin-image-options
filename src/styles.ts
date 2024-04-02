@@ -12,6 +12,7 @@ export const StyledImg = styled.img<{ $aspectRatio: number }>`
 export const StyledDialog = styled(Dialog)`
   .content {
     display: flex;
+    min-height: 300px;
 
     img {
       max-height: 400px;

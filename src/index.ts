@@ -1,28 +1,20 @@
-import { definePlugin, defineType } from "sanity";
+import { definePlugin, defineType, StringDefinition } from "sanity";
 
-import VisualOptions from "./components/VisualOptions";
+import ImageOptions, { ImageOptionsOpts } from "./ImageOptions";
 
-interface ImageOptionsConfig {}
+/** @public */
+interface ImageOptionsDefinition extends Omit<StringDefinition, "type" | "options"> {
+  type: "imageOptions";
+  options: ImageOptionsOpts;
+}
 
-/**
- * Usage in `sanity.config.ts` (or .js)
- *
- * ```ts
- * import {defineConfig} from 'sanity'
- * import {imageOptions} from 'sanity-plugin-image-options'
- *
- * export default defineConfig({
- *   // ...
- *   plugins: [
- *     //...
- *     imageOptions()
- *   ],
- * })
- * ```
- */
-export const imageOptions = definePlugin<ImageOptionsConfig | void>(() => {
-  // eslint-disable-next-line no-console
-  console.log("hello from sanity-plugin-image-options");
+declare module "@sanity/types" {
+  export interface IntrinsicDefinitions {
+    imageOptions: ImageOptionsDefinition;
+  }
+}
+
+export const imageOptions = definePlugin<void>(() => {
   return {
     name: "sanity-plugin-image-options",
     schema: {
@@ -30,11 +22,11 @@ export const imageOptions = definePlugin<ImageOptionsConfig | void>(() => {
         defineType({
           name: "imageOptions",
           type: "string",
-          components: { input: VisualOptions },
+          components: { input: ImageOptions },
         }),
       ],
     },
   };
 });
 
-imageOptions();
+export type { ImageOptionsDefinition, ImageOptionsOpts };
