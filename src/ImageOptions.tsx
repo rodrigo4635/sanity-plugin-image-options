@@ -1,34 +1,9 @@
 import { Box, Card, Grid } from "@sanity/ui";
 import React, { useCallback, useState } from "react";
-import type { BaseSchemaType, InitialValueProperty, StringInputProps } from "sanity";
 import { set } from "sanity";
-
 import ListItem from "./ListItem";
 import { StyledDialog } from "./styles";
-
-export type ImageOptionsListItem = {
-  title: string;
-  value: string;
-  image: string;
-  tooltip?: string;
-};
-
-export interface ImageOptionsOpts {
-  /** Option image aspect ratio (Default: 1) */
-  aspectRatio?: number;
-  /** Number of options per row (Default: 4) */
-  columns?: number;
-  /** List of options */
-  list: ImageOptionsListItem[];
-}
-
-interface ImageOptionsSchemaType extends BaseSchemaType {
-  jsonType: "string";
-  options: ImageOptionsOpts;
-  initialValue?: InitialValueProperty<undefined, string>;
-}
-
-type ImageOptionsProps = StringInputProps<ImageOptionsSchemaType>;
+import { ImageOptionsListItem, ImageOptionsProps } from "./types";
 
 const ImageOptions: React.FC<ImageOptionsProps> = ({
   schemaType,

@@ -4,6 +4,8 @@
   "compilerOptions": {
     "rootDir": ".",
     "jsx": "react-jsx",
-    "noEmit": true
+    "noEmit": true,
+    "typeRoots": ["./src/**/*", "./node_modules/@types"],
+    "baseUrl": "."
   }
 }

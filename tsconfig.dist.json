@@ -11,6 +11,8 @@
     "rootDir": ".",
     "outDir": "./dist",
     "jsx": "react-jsx",
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "typeRoots": ["./src/**/*", "./node_modules/@types"],
+    "baseUrl": "."
   }
 }

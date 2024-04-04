@@ -1,18 +1,6 @@
-import { definePlugin, defineType, StringDefinition } from "sanity";
-
-import ImageOptions, { ImageOptionsOpts } from "./ImageOptions";
-
-/** @public */
-interface ImageOptionsDefinition extends Omit<StringDefinition, "type" | "options"> {
-  type: "imageOptions";
-  options: ImageOptionsOpts;
-}
-
-declare module "@sanity/types" {
-  export interface IntrinsicDefinitions {
-    imageOptions: ImageOptionsDefinition;
-  }
-}
+import { definePlugin, defineType } from "sanity";
+import ImageOptions from "./ImageOptions";
+import "./types";
 
 export const imageOptions = definePlugin<void>(() => {
   return {
@@ -29,4 +17,4 @@ export const imageOptions = definePlugin<void>(() => {
   };
 });
 
-export type { ImageOptionsDefinition, ImageOptionsOpts };
+export type { ImageOptionsDefinition, ImageOptionsOpts, ImageOptionsListItem } from "./types";
