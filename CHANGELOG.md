@@ -5,6 +5,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/rodrigo4635/sanity-plugin-image-options/compare/v1.1.0...v1.1.1) (2024-04-04)
+
+### Bug Fixes
+
+- move types to a types file ([62cbb96](https://github.com/rodrigo4635/sanity-plugin-image-options/commit/62cbb96f755351efc7e99b5c5242b5d79c54278d))
+- move types to a types file ([ed8a1b1](https://github.com/rodrigo4635/sanity-plugin-image-options/commit/ed8a1b1537f565f0dd25930d150c34fb36b8d266))
+
 ## [1.1.0](https://github.com/rodrigo4635/sanity-plugin-image-options/compare/v1.0.0...v1.1.0) (2024-04-02)
 
 ### Features
