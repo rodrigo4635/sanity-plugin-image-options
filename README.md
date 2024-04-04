@@ -6,15 +6,15 @@ A string selection input with images, labels and tooltips. The user can also cli
 
 List of options, with 4 columns and Dark Theme:
 
-![Example 1](images/image1.png?raw=true)
+![Example 1](https://github.com/rodrigo4635/sanity-plugin-image-options/blob/main/images/image1.png?raw=true)
 
 List of options, with 3 columns and Light Theme:
 
-![Example 2](images/image2.png?raw=true)
+![Example 2](https://github.com/rodrigo4635/sanity-plugin-image-options/blob/main/images/image2.png?raw=true)
 
 Expanded image:
 
-![Example 3](images/image3.png?raw=true)
+![Example 3](https://github.com/rodrigo4635/sanity-plugin-image-options/blob/main/images/image3.png?raw=true)
 
 ## Installation
 
@@ -78,8 +78,8 @@ export default defineType({
 
 | Key            | Type             | Description                                                                     |
 | -------------- | ---------------- | ------------------------------------------------------------------------------- |
-| `columns`      | Number           | Number of options to be shown per line (default 4)                              |
-| `aspectRatio`  | Number           | Aspect ratio for the image inside the option (Default to 1 which means square)  |
+| `columns`      | Number           | Number of options per row (Optional, default to 4)                              |
+| `aspectRatio`  | Number           | Aspect Ratio for the image inside the card (Optional, default to 1)             |
 | `list`         | Array of objects | List of options                                                                 |
 | **List Item:** |                  |                                                                                 |
 | `value`        | String           | Option value                                                                    |
