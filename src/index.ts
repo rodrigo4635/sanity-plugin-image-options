@@ -1,6 +1,8 @@
-import { definePlugin, defineType } from "sanity";
-import ImageOptions from "./ImageOptions";
 import "./types";
+
+import { definePlugin, defineType } from "sanity";
+
+import ImageOptions from "./ImageOptions";
 
 export const imageOptions = definePlugin<void>(() => {
   return {
@@ -17,4 +19,4 @@ export const imageOptions = definePlugin<void>(() => {
   };
 });
 
-export type { ImageOptionsDefinition, ImageOptionsOpts, ImageOptionsListItem } from "./types";
+export type { ImageOptionsDefinition, ImageOptionsListItem, ImageOptionsOpts } from "./types";

@@ -1,6 +1,7 @@
 import { ExpandIcon } from "@sanity/icons";
 import { Box, Text, Tooltip } from "@sanity/ui";
 import React from "react";
+
 import { StyledCard, StyledImg } from "./styles";
 import { ImageOptionsListItem } from "./types";
 
